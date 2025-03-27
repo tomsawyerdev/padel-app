@@ -1,10 +1,3 @@
-
-
-# header
-
-
-
-
 # Probar la Api
 
 ## Obtener Token 
@@ -50,9 +43,9 @@ Devuelve un json con la estructura: {fecha, horario, cancha, club}
 
 
 
-## Buscar una cancha libre en dado el club y la fecha es opcional
+## Buscar una cancha libre, dado el club y la fecha que es opcional
 
-Devuelve un json con la estructura:  {slot, arra de canchaslibres}
+Devuelve un json con la estructura:  {slot, array de canchas libres del dia elegido}
 
 ```json
 {"status":200,"items":[
