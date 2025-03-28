@@ -69,8 +69,8 @@ app.get('/protected',isAuthenticated,(req, res) => {
   });
 
 app.use('/sessions', routes.sessions);
-//app.use('/appointments',isAuthenticated, routes.appointments);
-app.use('/appointments', routes.appointments);
+//app.use('/reservations',isAuthenticated, routes.reservations);
+app.use('/reservations', routes.reservations);
 
 
 

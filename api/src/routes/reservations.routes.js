@@ -2,7 +2,7 @@
 const express = require('express');
 var router = express.Router();
 
-var {appointments:controller} = require('../controllers');
+var {reservations:controller} = require('../controllers');
 
 //var {validator} = require('../middlewares');
 

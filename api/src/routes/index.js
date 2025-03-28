@@ -1,9 +1,9 @@
 
 
-const appointments = require('./appointments.routes.js');
+const reservations = require('./reservations.routes.js');
 const sessions = require('./sessions.routes.js');
 //const utils = require('./utils.routes.js');
 
 
 
-module.exports= {appointments,sessions};
+module.exports= {reservations,sessions};
