@@ -23,7 +23,7 @@ const create = async (req, res)=>{
 
     //https://sequelize.org/docs/v6/core-concepts/model-querying-finders/#findone
 
-    var user =  await Users.findOne({ where: { mail: username } });//,{ raw: true}
+    var user =  await Users.findOne({ where: { email: username } });//,{ raw: true}
     
     if(user==null){ 
       res.json({status:401, message: 'Autenticación fallida' });
@@ -38,8 +38,8 @@ const create = async (req, res)=>{
      {
       // Crear el token    
 
-      const token = generateToken({userid:user.id, username: user.mail }); //,userid:user.id
-      const username = user.mail;
+      const token = generateToken({userid:user.id, username: user.email }); //,userid:user.id
+      const username = user.email;
       res.json({status:200, username, token });
     } 
 

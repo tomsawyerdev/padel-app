@@ -54,24 +54,24 @@ INSERT INTO schedules(slot_start,slot_end,club_id) VALUES ( '17:30:0','18:30:0',
 INSERT INTO schedules(slot_start,slot_end,club_id) VALUES ( '19:30:0','20:30:0',club2);
 
 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',1,player1,c1,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',2,player1,c1,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',3,player1,c1,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,1,player1,c1,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,2,player1,c1,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,3,player1,c1,club1); 
 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',1,player2,c2,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',2,player2,c2,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',3,player2,c2,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,1,player2,c2,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,2,player2,c2,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,3,player2,c2,club1); 
 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',2,player1,c3,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',4,player2,c3,club1); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',5,player2,c3,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,2,player1,c3,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,4,player2,c3,club1); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,5,player2,c3,club1); 
 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',7,player1,ca,club2); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',8,player1,cv,club2); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-10',9,player2,cr,club2); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,7,player1,ca,club2); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,8,player1,cv,club2); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE,9,player2,cr,club2); 
 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',8,player1,ca,club2) ;
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',9,player2,cv,club2); 
-INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES ('2025-03-11',10,player2,cv,club2); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,8,player1,ca,club2) ;
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,9,player2,cv,club2); 
+INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,10,player2,cv,club2); 
 
 END $$;
