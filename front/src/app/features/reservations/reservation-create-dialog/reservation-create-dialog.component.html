@@ -1,0 +1,11 @@
+<h3 mat-dialog-title>Crear Reserva</h3>
+<mat-dialog-content>
+  <p>Cancha: {{data.court_name}}</p>
+  <p>Dia: {{data.day}}</p>
+  <p>Horario: {{data.slot_start}}-{{data.slot_end}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions" >
+    <button mat-button mat-dialog-close class="button" (click)="close()">Close</button>
+    <button mat-button mat-dialog-close class="button"  cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

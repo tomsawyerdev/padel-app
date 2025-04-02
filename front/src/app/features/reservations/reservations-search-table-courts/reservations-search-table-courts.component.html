@@ -1,0 +1,11 @@
+<div class="courts-layout"> 
+  
+    <p *ngIf="slot.free_courts.length==0" style="min-width:50px; padding-left: 4px">Sin disponibilidad</p>
+    
+    @for ( e of slot.free_courts; track e) {   
+  
+      <button mat-stroked-button class="button" (click)="clickCreate(e)"> {{e.court_name}}</button>
+
+        }       
+    
+</div>

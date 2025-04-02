@@ -1,0 +1,32 @@
+
+<div class="search-bar-layout">
+    <div class="search-bar-row">
+        
+        <mat-form-field class="form-field">
+            <mat-label>Club</mat-label>
+            <mat-select  [(value)]="club">
+              @for (c of clubs | keyvalue  ; track c) {
+                <mat-option [value]="c.value.id">                  
+                  {{c.value.name }} </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+      
+
+        
+          <mat-form-field class="form-field">
+            <mat-label>Dia</mat-label>
+            <input matInput [matDatepicker]="picker" [min]="today" [(ngModel)]="day">           
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>          
+           
+        <span class="spacer"></span>
+        <button mat-flat-button class="button" (click)="clickedSearch()">Search</button>
+    
+    
+        
+   </div>
+    
+</div>

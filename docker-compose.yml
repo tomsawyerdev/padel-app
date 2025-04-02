@@ -37,6 +37,18 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASS}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_DB=${POSTGRES_DB}
+
+  front:
+    container_name: padel-front
+    build:
+      context: .
+      dockerfile: ./front/front.dockerfile    
+    
+    ports:
+      - "4200:4200"
+    depends_on:
+      api:
+        condition: service_started      
 volumes:
     data_vol:
       name: padel-db-volume

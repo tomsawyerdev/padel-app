@@ -7,48 +7,31 @@
 Las claves se leen de un archivo de environment: *.env*
 
 
-## Api
+# Instrucciones para levantar los servicios
 
-La api corre en **Node Express**  
-
-## Front
-
-El front esta desarrollado en **Angular** y  la libreria **Material Angular** para los componentes.
-
-## Database
-
-El motor de base de datos elegido es **Postgres**.
-
-
-# Instrucciones para levantar la base de datos
+Llevantar los servicios uno a la vez, para evitar problemas de depencias:
 
 1. Generar solo la base de datos 
 
 ```docker-compose up db```
 
+2. Levantar la api
 
-2. Acceder a la base de datos desde una terminal:
+```docker-compose up api```
 
-```shell
+3. Levantar el fron
 
-docker exec -it padel-db bash 
+```docker-compose up front```
 
-bash-4.2# psql -U adminuser -d padel
+Acceder:
 
-padel=# \l listar bases de datos
-padel=# \dt or \dt+ listar tables
-padel=# \du or \du+ describe usuarios y sus permisos de usuarios
+``` http://localhost:4200/```
 
-
-
-```
-
-
-3. Pararla
+4. Pararla
 
 ```docker-compose down```
 
-4. Borrar el volumen
+5. Borrar el volumen
 
 Si hacemos algun cambio en las tablas hay que borrar el volumen,
  para que el docker lo regenere con los nuevos cambios.

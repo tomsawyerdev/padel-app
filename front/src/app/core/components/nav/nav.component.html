@@ -1,0 +1,35 @@
+<mat-toolbar class="topnav" >
+
+  
+    <a mat-button (click)="navigate('reservations/list')" >
+      <span class="mat-title-medium nav-base-color" >Home</span>
+       <mat-icon class="nav-base-color " style="transform:scale(1.2);margin-top: -5px;" >home</mat-icon>    
+    </a>
+
+    <a mat-button (click)="navigate('reservations/search')" >
+      <span class="mat-title-medium nav-base-color" >Busqueda</span>
+       <mat-icon class="nav-base-color " style="transform:scale(1.2);margin-top: -5px;" >calendar_month</mat-icon>    
+    </a>
+    <a mat-button (click)="navigate('games/list')" >
+      <span class="mat-title-medium nav-base-color" >Games</span>
+       <mat-icon class="nav-base-color " style="transform:scale(1.2);margin-top: -5px;" >sports_tennis</mat-icon>    
+    </a>
+   
+    <span class="example-spacer"></span>
+
+    <a mat-button *ngIf="!isLogged()" (click)="navigate('/session')"  >
+      <mat-icon class="nav-base-color " style="transform:scale(1.2);margin-top: -5px;" >login</mat-icon>    
+      <span class="mat-title-medium nav-base-color" >Login</span>     
+    </a>
+    <span *ngIf="isLogged()" class="mat-title-medium nav-base-color" style="margin-top: -5px;"  >{{getUsername()}}</span>
+    <mat-icon *ngIf="isLogged()" matBadge="4" matBadgeColor="warn" class="nav-base-color " style="transform:scale(0.9);margin-top: -5px;" >notifications</mat-icon>    
+    <a mat-button *ngIf="isLogged()" (click)="click_logout()" >
+      <mat-icon class="nav-base-color " style="transform:scale(1.2);margin-top: -5px;" >logout</mat-icon>    
+      <span class="mat-title-medium nav-base-color" >Logout</span>     
+    </a>
+       
+    
+    
+    
+  </mat-toolbar>
+  

@@ -57,11 +57,12 @@ const search = async (req, res)=>{
 
     const sql=`
     SELECT  json_build_object(
-        'id', schedules.id,
+        'slot_id', schedules.id,
         'slot_start',slot_start,
         'slot_end',slot_end,
+        'day',  $day_value::varchar,
         'free_courts', ARRAY(SELECT row_to_json(r)
-                        FROM (SELECT $day_value as day,schedules.id schedules_id,courts.id court_id,courts.name court_name,courts.club_id                     
+                        FROM (SELECT courts.id court_id,courts.name court_name,courts.club_id                     
                                   FROM  courts
                                   WHERE courts.club_id = $club_value AND courts.club_id NOT IN (SELECT club_id FROM reservations res WHERE res.day=TO_DATE($day_value,'YYYY-MM-DD') AND res.schedule_id = schedules.id)) r )) 
         as slot FROM schedules

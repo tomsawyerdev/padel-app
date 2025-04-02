@@ -49,22 +49,14 @@ Devuelve un json con la estructura: {fecha, horario, cancha, club}
 Devuelve un json con la estructura:  {slot, [array de canchas libres del dia elegido]}
 
 ```json
-{"status":200,"items":[
-    {"slot":{"id":1,"slot_start":"10:00:00","slot_end":"11:00:00","free_courts":[{"day":"19990101","schedules_id":1,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":1,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":1,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":2,"slot_start":"11:00:00","slot_end":"12:00:00","free_courts":[{"day":"19990101","schedules_id":2,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":2,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":2,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":3,"slot_start":"12:00:00","slot_end":"13:00:00","free_courts":[{"day":"19990101","schedules_id":3,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":3,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":3,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":4,"slot_start":"13:00:00","slot_end":"14:00:00","free_courts":[{"day":"19990101","schedules_id":4,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":4,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":4,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":5,"slot_start":"14:00:00","slot_end":"15:00:00","free_courts":[{"day":"19990101","schedules_id":5,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":5,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":5,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":6,"slot_start":"15:00:00","slot_end":"16:00:00","free_courts":[{"day":"19990101","schedules_id":6,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":6,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":6,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":7,"slot_start":"17:00:00","slot_end":"18:00:00","free_courts":[{"day":"19990101","schedules_id":7,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":7,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":7,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
-    
-    {"slot":{"id":8,"slot_start":"19:00:00","slot_end":"20:00:00","free_courts":[{"day":"19990101","schedules_id":8,"court_id":1,"court_name":"Cancha Verde","club_id":1},{"day":"19990101","schedules_id":8,"court_id":2,"court_name":"Cancha Roja","club_id":1},{"day":"19990101","schedules_id":8,"court_id":3,"court_name":"Cancha Azul","club_id":1}]}}]}
+{"status":200,"items":
+[{"slot":{"slot_id":1,"slot_start":"10:00:00","slot_end":"11:00:00","day":"1999-01-01","free_courts":[{"court_id":1,"court_name":"Cancha Verde","club_id":1},{"court_id":2,"court_name":"Cancha Roja","club_id":1},{"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
+
+{"slot":{"slot_id":2,"slot_start":"11:00:00","slot_end":"12:00:00","day":"1999-01-01","free_courts":[{"court_id":1,"court_name":"Cancha Verde","club_id":1},{"court_id":2,"court_name":"Cancha Roja","club_id":1},{"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
+
+{"slot":{"slot_id":3,"slot_start":"12:00:00","slot_end":"13:00:00","day":"1999-01-01","free_courts":[{"court_id":1,"court_name":"Cancha Verde","club_id":1},{"court_id":2,"court_name":"Cancha Roja","club_id":1},{"court_id":3,"court_name":"Cancha Azul","club_id":1}]}},
+
+{"slot":{"slot_id":8,"slot_start":"19:00:00","slot_end":"20:00:00","day":"1999-01-01","free_courts":[{"court_id":1,"court_name":"Cancha Verde","club_id":1},{"court_id":2,"court_name":"Cancha Roja","club_id":1},{"court_id":3,"court_name":"Cancha Azul","club_id":1}]}}]}
 ```
 
 # Buscar por club, el club es mandatorio

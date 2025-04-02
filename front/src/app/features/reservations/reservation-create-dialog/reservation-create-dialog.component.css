@@ -1,0 +1,13 @@
+
+.dialog-actions{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: right;    
+}
+
+.button{    
+    border-radius: 3px;
+    margin: 10px;    
+}
+

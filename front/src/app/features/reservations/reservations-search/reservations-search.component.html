@@ -1,0 +1,25 @@
+
+<div class="main-layout">
+        <div class="content">
+    
+            <app-reservations-search-bar   (emitterClickSearch)="handleSearchEvent($event)" ></app-reservations-search-bar>
+           
+        </div>   
+      
+        <div class="content">
+            
+                @for (e of items; track e) {
+            
+                    <div  class="slot-row">                           
+                     <span class="mat-title-medium" > {{e.slot_start}} - {{e.slot_end}}</span> 
+                     <app-reservations-search-table-courts
+                     (emitterClickConfirm)="handleConfirmEvent($event)" 
+                      [slot]="e" >
+                    </app-reservations-search-table-courts>                 
+                    </div>
+                    
+                    }
+            
+        </div>
+
+</div>
