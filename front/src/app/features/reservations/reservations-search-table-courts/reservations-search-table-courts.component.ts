@@ -24,10 +24,9 @@ export class ReservationsSearchTableCourtsComponent {
 
 
   clickCreate( court:object){
-    console.log("ReservationsSearchTableListCourtsComponent, clickedCreate:",{...this.slot,free_courts:null,...court});
-    // rutea para crear o crea la reserva y muestra una SnackBar ?    
-    // muestra un dialogo con toda la info 
-    // [cancel],[ok]
+    //console.log("ReservationsSearchTableListCourtsComponent, clickedCreate:",{...this.slot,free_courts:null,...court});
+    
+    // muestra un dialogo con toda la info  y botones [cancel],[ok]
 
     this.emitterClickConfirm.emit({...this.slot,free_courts:null,...court});
     

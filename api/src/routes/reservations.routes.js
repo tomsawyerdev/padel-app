@@ -4,12 +4,13 @@ var router = express.Router();
 
 var {reservations:controller} = require('../controllers');
 
-//var {validator} = require('../middlewares');
+var {validator} = require('../middlewares');
 
 
 
 router.get('/list', controller.list); 
 router.get('/search', controller.search); 
+router.post('/create',validator.reservationNew, controller.create); 
 
 
 

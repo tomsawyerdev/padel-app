@@ -22,8 +22,7 @@ sequelize.authenticate().then(() => {
 
 // ---------------------------
 
-var routes = require('./routes');
-
+const routes = require('./routes');
 const app = express();
 
 // ------------------------------------------------------------
@@ -44,8 +43,8 @@ app.use(cors(corsConfig));
 app.use(express.json());//json to body
 
 
-//Math.trunc(Date.now()/1000).toString().slice(-5)
 
+// Debug middleware
 app.use((req, res, next) => {
   console.log("---------------------",req.method,": ", req.originalUrl);
   //console.log("req.body:",req.body);  
@@ -53,9 +52,9 @@ app.use((req, res, next) => {
    next();
 });
 
-// ------------------------------------------------------------
-
-
+// ---------------------------------
+// Rutas
+//----------------------------------
 //app.use(isAuthenticated.unless({ path: ["/","/sessions"] }));
 
 app.get("/", function(req, res) {
@@ -70,8 +69,8 @@ app.get('/protected',isAuthenticated,(req, res) => {
 
 
 app.use('/sessions', routes.sessions);
-//app.use('/reservations',isAuthenticated, routes.reservations);
-app.use('/reservations', routes.reservations);
+app.use('/reservations',isAuthenticated, routes.reservations);
+//app.use('/reservations', routes.reservations);
 app.use('/clubs', routes.clubs);
 
 //app.use('/games', routes.games);
@@ -109,6 +108,10 @@ const errorHandling = (err, req, res, next) => {
 
 
 app.use(errorHandling);
+//---------------------------------
+
+//---------------------------------
+//  Run the server
 //---------------------------------
 
 

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { inject } from '@angular/core';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
+
+import { Router } from '@angular/router';
+
 
 import {ApiService} from '../../../core/services/api/api.service';
 import {StoreService} from '../../../core/services/store/store.service';
@@ -8,6 +12,9 @@ import {StoreService} from '../../../core/services/store/store.service';
 import {ReservationsSearchBarComponent} from '../reservations-search-bar/reservations-search-bar.component';
 import {ReservationsSearchTableCourtsComponent} from '../reservations-search-table-courts/reservations-search-table-courts.component';
 import {ReservationCreateDialogComponent} from '../reservation-create-dialog/reservation-create-dialog.component';
+
+
+
 
 export interface SlotElement {
   id:number;
@@ -30,6 +37,8 @@ export class ReservationsSearchComponent {
 
   private api = inject(ApiService);
   private store = inject(StoreService);// Remember last search parameters
+  private router = inject(Router);
+  private snackBar = inject(MatSnackBar);
 
   items:SlotElement[] = [] ; 
   
@@ -53,8 +62,9 @@ export class ReservationsSearchComponent {
     //this.store.setReservationsSearchValues(filters);
    
     this.api.getReservationsSearch(filters).subscribe({
-      next: (resp) => { this.items = resp.items.map( (e :any)=> ({...e.slot}))
-                        console.log("ReservationsSearch, fetch next:", this.items.length)
+      next: (resp) => { this.items = resp.items.map( (e :any)=> ({...e.slot}));
+                        console.log("ReservationsSearch, fetch, items length:", this.items.length);
+
                       },
   });
   }
@@ -75,20 +85,35 @@ export class ReservationsSearchComponent {
       //dialogConfig.disableClose = true;
       dialogConfig.autoFocus = true;
       dialogConfig.data = data;
-      /* {
-        slot_id: 1,
-        date: "31/03/2025",
-        slot : "10:00-11:00",
-        court_name: 'Cancha XXX',
-
-      };*/
+      //console.log("reservation open dialog keys:", Object.keys(data));
+  
 
       //this.dialog.open(ReservationCreateDialogComponent, dialogConfig);
       const dialogRef = this.dialog.open(ReservationCreateDialogComponent, dialogConfig);
 
-      dialogRef.afterClosed().subscribe(
-          data => console.log("Dialog output:", data)
-      ); 
+      dialogRef.afterClosed().subscribe( result => { if (result) this.onReservationCreate(data)  }); 
   }
+
+  async onReservationCreate(data: any) {
+
+     console.log("onReservationCreate:");
+     //console.log("    data:", data);
+     //console.log("    keys:", Object.keys(data));
+      /* 
+        "slot_id", "slot_start", "slot_end", "day", "free_courts", "court_id", "court_name", "club_id"
+      */
+
+    let reservation = {  day:data.day,  schedule_id:data.slot_id, court_id: data.court_id, club_id: data.club_id }; 
+    //console.log("    reservation:", reservation);
+    let response = await this.api.postReservationCreate(reservation);
+    //console.log("    response:", response);
+    
+ 
+    // Mostrar mensaje de confirmacion  en un Snack bar
+    // https://material.angular.io/components/snack-bar/overview        
+      this.snackBar.open(response.message, "" ,{  duration: 1000});
+      this.router.navigate(['reservations/list'])
+   
+    }
   
 }

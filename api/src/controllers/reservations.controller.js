@@ -4,6 +4,8 @@
 const db = require('../db/sequelize');
 const { QueryTypes } = require("sequelize");
 
+const reservationService = require('../services/reservation.service') 
+
 //console.log("typeof:",typeof(players),Object.keys(players));
 
 
@@ -18,12 +20,13 @@ const { QueryTypes } = require("sequelize");
 
 const list = async (req, res)=>{ 
     
-    let userid = req.auth && req.auth.userid ? req.auth.userid : 1;
+    // Si no hay un usuario logeado utilizo el 1, solo para prueba.
+    let userid = req.auth && req.auth.userid ? req.auth.userid : 0;
     console.log(" list by user:",userid);
 
     const sql=`SELECT row_to_json(r) reservation FROM (
         SELECT id,day,        
-                (SELECT concat(to_char(slot_start,'HH24:MM:SS'),'-',to_char(slot_end,'HH24:MM:SS')) FROM schedules where  res.schedule_id = schedules.id ) schedule_slot,              
+                (SELECT concat(to_char(slot_start,'HH24:MI:SS'),'-',to_char(slot_end,'HH24:MI:SS')) FROM schedules where  res.schedule_id = schedules.id ) schedule_slot,              
                 (SELECT name FROM clubs where  res.club_id = clubs.id ) club_name, 
                 (SELECT name FROM courts where  res.court_id = courts.id ) court_name,                
                 'Confirmado' game_state,
@@ -44,16 +47,20 @@ const search = async (req, res)=>{
     //console.log(" search reservations:");
         
     const { club, day } = req.query;
-    if (!club || !day){
+    if (!club || !day || isNaN(new Date(day))){
         //400 (Bad Request)
         //422 (Unprocessable Entity) 
         console.log("reservations/search:  missing parameters");
-        res.status(422); //.json({status:422,items:[]});
+        res.status(422).json({status:422,items:[]});
+        return
     }
+
      
     const day_value = day?day:'1999-01-01';
     const club_value = club?club:1;
     var bind={day_value,club_value};
+
+    console.log("reservations search:",day_value,club_value)
 
     const sql=`
     SELECT  json_build_object(
@@ -64,7 +71,7 @@ const search = async (req, res)=>{
         'free_courts', ARRAY(SELECT row_to_json(r)
                         FROM (SELECT courts.id court_id,courts.name court_name,courts.club_id                     
                                   FROM  courts
-                                  WHERE courts.club_id = $club_value AND courts.club_id NOT IN (SELECT club_id FROM reservations res WHERE res.day=TO_DATE($day_value,'YYYY-MM-DD') AND res.schedule_id = schedules.id)) r )) 
+                                  WHERE courts.club_id = $club_value AND courts.id NOT IN (SELECT res.court_id FROM reservations res WHERE res.club_id =$club_value AND res.day=TO_DATE($day_value,'YYYY-MM-DD') AND res.schedule_id = schedules.id  )) r )) 
         as slot FROM schedules
         WHERE schedules.club_id=$club_value; `
 
@@ -78,11 +85,31 @@ const search = async (req, res)=>{
                    
 } 
  
- 
+const create = async (req, res)=>{ 
+    
+      let user_id = req.auth.userid
+
+      try {
+       
+        const { schedule_id,day,court_id,club_id } = req.body;
+        const reservation = { schedule_id, day,user_id,court_id,club_id};
+        console.log(" create reservations:",reservation);
+
+        const newRes = await reservationService.createReservation(reservation);
+        return res
+          .status(200)
+          .json({status:200, message: "create reservation successful", data: newRes });
+      } catch (error) {
+        res.status(400).json({ error });
+      }
 
 
+}
 // Export of all methods as object 
 module.exports = { 
     list,
-    search
+    search,
+    create
 }
+
+

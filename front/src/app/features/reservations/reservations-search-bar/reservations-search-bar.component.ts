@@ -52,7 +52,7 @@ export class ReservationsSearchBarComponent {
   today = new Date(Date.now()); 
   
 
-  day =  new Date(Date.now());
+  day =  new Date(Date.now());  // se removio [min]="today" 
  
 
   ngOnInit() {

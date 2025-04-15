@@ -3,8 +3,8 @@ import { inject } from '@angular/core';
 //import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { tap } from 'rxjs/operators';
-//import {  take, lastValueFrom } from 'rxjs';
+//import { tap } from 'rxjs/operators';
+import {  take, lastValueFrom } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { environment } from '../../../../environments/environment';
 
@@ -17,6 +17,8 @@ export class ApiService {
 
   private urlReservationsList = environment.apiUrl + 'reservations/list';
   private urlReservationsSearch = environment.apiUrl + 'reservations/search';
+  private urlReservationsCreate = environment.apiUrl + 'reservations/create';
+
   private urlClubs = environment.apiUrl + 'clubs';
   
   private urlPlayers = environment.apiUrl + 'players';
@@ -41,46 +43,22 @@ export class ApiService {
     //.pipe( tap(value => { console.log('Spy:', value); }));
   } 
 
-  //----------------------------
-  // Games
-  //----------------------------
 
-
-
-  //----------------------------
-  // Players
-  //----------------------------
-  getPlayer(id : number): Observable<any> { 
+  
+  async postReservationCreate(data:object): Promise<any> {
     var token : string = (this.authService.getToken() as string);
-    return this.http.get(this.urlPlayers+`/${id}`, {  headers: { Authorization: token  }}); 
-   }
+    var res$ = this.http.post(this.urlReservationsCreate, data,{  headers: { Authorization: token  }}).pipe(take(1));
+    
+    const result:any = await lastValueFrom(res$);        
+    return result;    
+}
 
-  updPlayer(id : number, player:any): Observable<any> { 
-    var token : string = (this.authService.getToken() as string);
-    return this.http.post(this.urlPlayers+`/${id}`,player, {  headers: { Authorization: token  }});
-    //.pipe( tap(value => { console.log('api.updPlayer:', value); }));; 
-   }
-
-  newPlayer(player:any): Observable<any> { 
-    var token : string = (this.authService.getToken() as string);
-    return this.http.post(this.urlPlayers,player, {  headers: { Authorization: token  }}); 
-   }
+  //----------------------------
+  // Game Search
+  //----------------------------
 
 
-  getPlayersSet(ids : any): Observable<any> { 
-    var token : string = (this.authService.getToken() as string);
-    return this.http.post(this.urlPlayers+'/set',{ids}, {  headers: { Authorization: token  }}); 
-   }
-
-  getPlayers(query : any): Observable<any>  {
-      
-      var token : string = (this.authService.getToken() as string);
-
-      return this.http.get(this.urlPlayers, { params: query , headers: { Authorization: token  }})
-      //.pipe( tap(value => { console.log('Spy:', value); }));
-
-  }
-
+  
   //----------------------------
   // Clubs
   //----------------------------
