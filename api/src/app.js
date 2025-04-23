@@ -70,10 +70,8 @@ app.get('/protected',isAuthenticated,(req, res) => {
 
 app.use('/sessions', routes.sessions);
 app.use('/reservations',isAuthenticated, routes.reservations);
-//app.use('/reservations', routes.reservations);
 app.use('/clubs', routes.clubs);
-
-//app.use('/games', routes.games);
+app.use('/games', isAuthenticated, routes.games);
 
 
 

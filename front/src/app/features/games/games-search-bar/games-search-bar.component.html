@@ -1,0 +1,45 @@
+<div class="search-bar-layout">
+    <div class="search-bar-row">
+        
+        <mat-form-field class="form-field">
+            <mat-label>Club</mat-label>
+            <mat-select  [(value)]="club">
+              @for (c of clubs | keyvalue  ; track c) {
+                <mat-option [value]="c.value.id">                  
+                  {{c.value.name }} </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+      
+          <mat-checkbox [checked]="getDay(1)" (change)="toggleDay(1)">
+            L
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(2)" (change)="toggleDay(2)">
+            M
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(3)" (change)="toggleDay(3)">
+            X
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(4)" (change)="toggleDay(4)">
+            J
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(5)" (change)="toggleDay(5)">
+            V
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(6)" (change)="toggleDay(6)">
+            S
+          </mat-checkbox>
+          <mat-checkbox [checked]="getDay(7)" (change)="toggleDay(7)">
+            D
+          </mat-checkbox>
+             
+           
+        <span class="spacer"></span>
+        <button mat-flat-button class="button" (click)="clickedSearch()">Search</button>
+    
+    
+        
+   </div>
+    
+</div>

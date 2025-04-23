@@ -1,7 +1,7 @@
 <div class="main-layout">
 <div class="content">
     <span class="mat-title-medium" > Mis reservas</span> 
-    <app-reservations-list-table  [dataSource]="items" ></app-reservations-list-table>
+    <app-reservations-list-table  (emitterClickEvent)="handleClickEvent($event)"  [dataSource]="items" ></app-reservations-list-table>
        
 </div>  
 </div>

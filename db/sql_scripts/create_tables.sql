@@ -84,8 +84,10 @@ CREATE TABLE reservations (
   user_id int NOT NULL,   /* la reserva la hace un solo jugador */
   court_id int NOT NULL,  /* una reserva se hace sobre una cancha */
   club_id int NOT NULL,   /* guardo el club para facilitar las queries */  
+  opponent_id int NULL,
   FOREIGN KEY (user_id) REFERENCES users(id),  
   FOREIGN KEY (court_id) REFERENCES courts(id),  
   FOREIGN KEY (club_id) REFERENCES clubs(id)
+  FOREIGN KEY (opponent_id) REFERENCES users(id),  
 
   );

@@ -1,0 +1,30 @@
+.items-table {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .mat-mdc-row .mat-mdc-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+  }
+  
+  .mat-mdc-row:hover .mat-mdc-cell {
+    
+    background-color: rgb(194, 193, 193);
+  }
+  
+  .demo-row-is-clicked {
+    font-weight: bold;
+  }
+
+  .mat-mdc-header-row {
+    /*background-color: blue;*/
+    height:  30px !important;
+    
+  }
+
+  .table-row {
+    height:  30px !important;
+  }

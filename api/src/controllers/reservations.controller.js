@@ -13,14 +13,13 @@ const reservationService = require('../services/reservation.service')
 
 //http://localhost:3000/reservations/list
 /*
-'schedule_id',  res.schedule_id,
-'court_id',  res.court_id, 
-'club_id',  res.club_id,
+
+sin asignar, en busqueda, asignado
 */
 
 const list = async (req, res)=>{ 
     
-    // Si no hay un usuario logeado utilizo el 1, solo para prueba.
+   
     let userid = req.auth && req.auth.userid ? req.auth.userid : 0;
     console.log(" list by user:",userid);
 
@@ -29,9 +28,14 @@ const list = async (req, res)=>{
                 (SELECT concat(to_char(slot_start,'HH24:MI:SS'),'-',to_char(slot_end,'HH24:MI:SS')) FROM schedules where  res.schedule_id = schedules.id ) schedule_slot,              
                 (SELECT name FROM clubs where  res.club_id = clubs.id ) club_name, 
                 (SELECT name FROM courts where  res.court_id = courts.id ) court_name,                
-                'Confirmado' game_state,
-                 1  game_id
-                 FROM reservations res where user_id=$userid ORDER BY  day,schedule_slot,club_name,court_name) r ;;`
+                (SELECT concat(firstname,' ',lastname) FROM users where  res.opponent_id = users.id ) opponent_name,
+                CASE WHEN res.opponent_id is null THEN 'No asignado'
+                WHEN res.opponent_id=-1 THEN 'En busqueda'                
+                ELSE 'Asignado'
+                END
+                AS opponent_state,
+                res.opponent_id                 
+                 FROM reservations res where user_id=$userid ORDER BY  day,schedule_slot,club_name,court_name) r ;`
 
     result =  await db.query(sql, {
             bind: { userid },

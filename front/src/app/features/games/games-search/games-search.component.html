@@ -1,0 +1,14 @@
+<div class="main-layout">
+    <div class="content">
+
+        <app-games-search-bar   (emitterClickSearch)="handleSearchEvent($event)" ></app-games-search-bar>
+       
+    </div>   
+  
+    <div class="content">
+        
+        <app-games-search-table  (emitterClickEvent)="handleClickEvent($event)"   [dataSource]="items" ></app-games-search-table>
+        
+    </div>
+
+</div>

@@ -21,7 +21,11 @@ export class ApiService {
 
   private urlClubs = environment.apiUrl + 'clubs';
   
-  private urlPlayers = environment.apiUrl + 'players';
+  private urlGamesList = environment.apiUrl +   'games/list';
+  private urlGamesSearch = environment.apiUrl + 'games/search';
+  private urlGamesUpdate = environment.apiUrl + 'games/update';
+
+  
   
 
 
@@ -54,11 +58,34 @@ export class ApiService {
 }
 
   //----------------------------
-  // Game Search
+  // Games 
   //----------------------------
 
+  // Lista las reservas en las que soy contrincante
+  getGamesList(): Observable<any> {
+    var token : string = (this.authService.getToken() as string);
+    return this.http.get(this.urlGamesList,{  headers: { Authorization: token  }});     
+  }
 
-  
+  // Para buscar las reservas que necesitan un contrincante, busca por club y dia de la semana [L,M,X,J,V,S,D]
+  postGamesSearch(data : any): Observable<any>  {
+      
+    var token : string = (this.authService.getToken() as string);
+    return this.http.post(this.urlGamesSearch, data, { headers: { Authorization: token  }})
+    //.pipe( tap(value => { console.log('Spy:', value); }));
+  } 
+
+  // Para actualizar el oponente_id
+  async postGamesSetOpponent(data : any):  Promise<any> {
+      
+    var token : string = (this.authService.getToken() as string);
+    var res$ = this.http.post(this.urlGamesUpdate, data, { headers: { Authorization: token  }}).pipe(take(1));
+    
+    const result:any = await lastValueFrom(res$);        
+    return result;    
+    
+  } 
+
   //----------------------------
   // Clubs
   //----------------------------

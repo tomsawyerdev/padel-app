@@ -2,8 +2,8 @@
 
 
 const Users = require('./users.model.js');
-const Reservation = require('./reservation.model.js');
+const Reservations = require('./reservation.model.js');
 
 
 
-module.exports= {Users,Reservation};
+module.exports= {Users,Reservations};

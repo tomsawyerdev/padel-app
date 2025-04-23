@@ -1,0 +1,13 @@
+<h3 mat-dialog-title>Confirmar Invitacion</h3>
+<mat-dialog-content>
+  <p>Contrincante: {{data.user_name}}</p>
+  <p>Club: {{data.club_name}}</p>
+  <p>Cancha: {{data.court_name}}</p>
+  <p>Dia: {{data.day}}</p>
+  <p>Horario: {{data.schedule_slot}}</p>
+</mat-dialog-content>
+
+<mat-dialog-actions class="dialog-actions" >
+    <button mat-button mat-dialog-close class="button" (click)="close()">Close</button>
+    <button mat-button mat-dialog-close class="button"  cdkFocusInitial (click)="save()">Save</button>
+</mat-dialog-actions>

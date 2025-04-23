@@ -30,6 +30,10 @@ const Reservation = sequelize.define(
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      opponent_id: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
     },
     { tableName: "reservations", timestamps: false }
   );

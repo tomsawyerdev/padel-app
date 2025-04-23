@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component,Input, Output,EventEmitter } from '@angular/core';
 import {MatTableModule} from '@angular/material/table';
 
 export interface ReservationElement {
@@ -22,23 +22,24 @@ export interface ReservationElement {
 export class ReservationsListTableComponent {
 
   @Input() dataSource : ReservationElement[] =[];
+  @Output() emitterClickEvent = new EventEmitter<any>();  
 
   displayedColumns: string[] = [
     'fecha',
     'schedule_slot',
     'club_name',
-    'court_name',    
-    'game_state'
+    'court_name',        
+    'opponent_state',
+    'opponent_name'
    ];
 
 
   // Detectar el evento click
   clickedRow( row : ReservationElement ): void{
 
-    console.log("clickedRow:", row);    
+   // console.log("clickedRow:", row);       
     
-    //Route to /games
-    //this.router.navigate([`/games/show/${row.game_id}`]);     
+    this.emitterClickEvent.emit(row);    
  }
 
 }
