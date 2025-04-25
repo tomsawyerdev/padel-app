@@ -26,7 +26,8 @@ export class GamesListTableComponent {
     'schedule_slot',
     'club_name',
     'court_name',    
-    'user_name'
+    'user_name',
+    'status'
    ];
 
     // Detectar el evento click

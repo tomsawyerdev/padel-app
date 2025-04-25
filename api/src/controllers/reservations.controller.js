@@ -34,6 +34,10 @@ const list = async (req, res)=>{
                 ELSE 'Asignado'
                 END
                 AS opponent_state,
+                ARRAY(SELECT row_to_json(r)
+                      FROM (SELECT user_id id, user_name name
+                            FROM  opponents
+                            WHERE res.id= opponents.reservation_id  ) r ) as opponents,
                 res.opponent_id                 
                  FROM reservations res where user_id=$userid ORDER BY  day,schedule_slot,club_name,court_name) r ;`
 

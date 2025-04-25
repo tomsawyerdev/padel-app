@@ -24,7 +24,7 @@ export class ApiService {
   private urlGamesList = environment.apiUrl +   'games/list';
   private urlGamesSearch = environment.apiUrl + 'games/search';
   private urlGamesUpdate = environment.apiUrl + 'games/update';
-
+  private urlGamesNewOpponent = environment.apiUrl + 'games/new';
   
   
 
@@ -85,6 +85,17 @@ export class ApiService {
     return result;    
     
   } 
+
+  async postGamesNewOpponent(data : any):  Promise<any> {
+      
+    var token : string = (this.authService.getToken() as string);
+    var res$ = this.http.post(this.urlGamesNewOpponent, data, { headers: { Authorization: token  }}).pipe(take(1));
+    
+    const result:any = await lastValueFrom(res$);        
+    return result;    
+    
+  } 
+
 
   //----------------------------
   // Clubs

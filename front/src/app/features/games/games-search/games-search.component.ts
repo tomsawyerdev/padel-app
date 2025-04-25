@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import {ApiService} from '../../../core/services/api/api.service';
 import { GamesSearchBarComponent} from '../games-search-bar/games-search-bar.component';
 import { GamesSearchTableComponent } from "../games-search-table/games-search-table.component";
-import {GamesSearchUpdOpponentDlgComponent } from "../games-search-upd-opponent-dlg/games-search-upd-opponent-dlg.component";
+import {GamesSearchNewOpponentDlgComponent } from "../games-search-new-opponent-dlg/games-search-new-opponent-dlg.component";
 
 @Component({
   selector: 'app-games-search',
@@ -60,7 +60,7 @@ export class GamesSearchComponent {
     
     console.log("Games open dialog keys:", Object.keys(data));    
    
-    const dialogRef = this.dialog.open(GamesSearchUpdOpponentDlgComponent, dialogConfig);
+    const dialogRef = this.dialog.open(GamesSearchNewOpponentDlgComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe( result => { if (result) this.onDlgConfirmation(data)  }); 
 }
@@ -71,9 +71,9 @@ async onDlgConfirmation(data: any) {
    //console.log("    data:", data);
    //console.log("    keys:", Object.keys(data));    
 
-  let reservation = { reservation_id:data.id,opponent_id:0}; 
+  let reservation = { reservation_id:data.id}; 
   //console.log("    reservation:", reservation);
-  let response = await this.api.postGamesSetOpponent(reservation);
+  let response = await this.api.postGamesNewOpponent(reservation);
   //console.log("    response:", response);
   
 

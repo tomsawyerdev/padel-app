@@ -91,3 +91,5 @@ CREATE TABLE reservations (
   FOREIGN KEY (opponent_id) REFERENCES users(id),  
 
   );
+
+

@@ -23,7 +23,12 @@
 
     <ng-container matColumnDef="opponent_state">
       <th mat-header-cell *matHeaderCellDef >Contrincante</th>
-      <td mat-cell *matCellDef="let element">{{element.opponent_state}}</td>
+      <td mat-cell *matCellDef="let element">{{element.opponent_state}}
+        @if (element.opponents.length>0 && element.opponent_id!=null ){
+            ({{element.opponents.length}})
+        }
+      
+      </td>
     </ng-container>
 
    <ng-container matColumnDef="opponent_name">

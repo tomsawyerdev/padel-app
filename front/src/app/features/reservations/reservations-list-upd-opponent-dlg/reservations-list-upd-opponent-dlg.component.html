@@ -1,17 +1,20 @@
-<h3 mat-dialog-title>Modificar Contrincante</h3>
+<h3 mat-dialog-title>Busqueda de Contrincante</h3>
 <mat-dialog-content>
 
-  
-
-      <mat-radio-group aria-label="Select an option"  [(ngModel)]="opponent_id" >
-        <mat-radio-button [value]="-1"> En busqueda</mat-radio-button>
-        <mat-radio-button [value]="null" >No asignado</mat-radio-button>
-
-        @if (show ){
-        <mat-radio-button [value]="data.opponent_id" >{{data.opponent_name}}</mat-radio-button>
-       }
-
-      </mat-radio-group>
+  @if (data.opponents.length>0 && data.opponent_id!=null ){
+  <mat-form-field class="form-field">
+    <mat-label>Oponente</mat-label>
+    <mat-select  [(value)]="opponent_id">
+      @for (e of data.opponents   ; track e) {
+        <mat-option [value]="e.id">                  
+          {{e.name }} </mat-option>
+      }
+      
+    </mat-select>
+  </mat-form-field>
+  }
+ 
+ 
      
          
 
@@ -19,6 +22,23 @@
 </mat-dialog-content>
 
 <mat-dialog-actions class="dialog-actions" >
+   
+    @if (data.opponent_id==null ){
+
+      <button mat-button mat-dialog-close class="button" (click)="clickEnable()">Activar Busqueda</button>
+  
+    }
+    @else{
+  
+      <button mat-button mat-dialog-close class="button" (click)="clickDisable()">Desactivar Busqueda</button>
+      
+    }
+
+    @if (data.opponents.length>0 ){
+
+    <button mat-button mat-dialog-close class="button"  cdkFocusInitial (click)="clickSave()">Guardar</button>
+   }
     <button mat-button mat-dialog-close class="button" (click)="close()">Close</button>
-    <button mat-button mat-dialog-close class="button"  cdkFocusInitial (click)="save()">Save</button>
+
+
 </mat-dialog-actions>

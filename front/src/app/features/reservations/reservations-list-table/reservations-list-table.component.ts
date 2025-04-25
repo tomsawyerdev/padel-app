@@ -30,7 +30,7 @@ export class ReservationsListTableComponent {
     'club_name',
     'court_name',        
     'opponent_state',
-    'opponent_name'
+    'opponent_name',   
    ];
 
 

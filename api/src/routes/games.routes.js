@@ -11,7 +11,7 @@ var {validator} = require('../middlewares');
 router.get('/list', controller.list); 
 router.post('/search', controller.search); 
 
-//router.post('/update', controller.update_opponent); 
+router.post('/new', controller.new_opponent); 
 router.post('/update',validator.gameUpdate, controller.update_opponent); 
 
 

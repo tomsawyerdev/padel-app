@@ -34,7 +34,11 @@ INSERT INTO roles(name) VALUES('manager') RETURNING id into role_manager;
 
 INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Alice','Smith','alice@gmail.com','5487999',role_player,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') RETURNING id into player1;  
 INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Jhon','McEnroe','jhon@gmail.com','5487999',role_player,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') RETURNING id into player2;  
-INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Bob','Morrison','bob@gmail.com' ,'5487999',role_manager,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') RETURNING id into manager1;  
+INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Bob','Morrison','bob@gmail.com' ,'5487999',role_manager,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') RETURNING id into manager1;
+
+INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Novak','Djocovich','djocovich@gmail.com','5487999',role_player,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') ;  
+INSERT INTO users(firstname,lastname,email,phone,role_id,password) VALUES ('Andy','Murray','murray@gmail.com','5487999',role_player,'$argon2id$v=19$m=4096,t=3,p=1$RrtzvESo4bkSXrWxbc530g$Lyyvcbaa3UNVymz+LMbLjN2hClM6NSRQiMJqGg4vtNY') ;  
+
 
 INSERT INTO clubs(name,address,email,phone,user_id) VALUES ('Padel Sur','calle 1'  ,'mail@club','4598725',manager1) RETURNING id into club1;
 INSERT INTO clubs(name,address,email,phone,user_id) VALUES ('Padel Norte','calle 2','mail@club','4598725',manager1) RETURNING id into club2;
@@ -88,5 +92,7 @@ INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRE
 INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,s8,player1,ca,club2) ;
 INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,s9,player2,cv,club2); 
 INSERT INTO reservations(day,schedule_id,user_id,court_id,club_id) VALUES (CURRENT_DATE+1,s10,player2,cv,club2); 
+
+
 
 END $$;

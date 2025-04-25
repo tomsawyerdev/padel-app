@@ -9,16 +9,18 @@ import {
   MatDialogRef,
   MatDialogTitle } from '@angular/material/dialog';
 
-@Component({
-  selector: 'app-games-search-upd-opponent-dlg',
-  standalone: true,
-  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],
-  templateUrl: './games-search-upd-opponent-dlg.component.html',
-  styleUrl: './games-search-upd-opponent-dlg.component.css'
-})
-export class GamesSearchUpdOpponentDlgComponent {
 
-  readonly dialogRef = inject(MatDialogRef<GamesSearchUpdOpponentDlgComponent>);
+
+@Component({
+  selector: 'app-games-search-new-opponent-dlg',
+  standalone: true,
+  imports: [MatButtonModule, MatDialogActions, MatDialogClose, MatDialogTitle, MatDialogContent],  
+  templateUrl: './games-search-new-opponent-dlg.component.html',
+  styleUrl: './games-search-new-opponent-dlg.component.css'
+})
+export class GamesSearchNewOpponentDlgComponent {
+
+  readonly dialogRef = inject(MatDialogRef<GamesSearchNewOpponentDlgComponent>);
    
   data = inject(MAT_DIALOG_DATA);     
   
